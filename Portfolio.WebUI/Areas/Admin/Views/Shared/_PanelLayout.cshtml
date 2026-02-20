@@ -1,0 +1,56 @@
+﻿
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_MainLayout.cshtml";
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+}
+
+<aside class="fixed left-0 top-20 z-40 w-64 bg-white dark:bg-[#231631] border-r border-slate-200 dark:border-white/10 hidden lg:flex flex-col flex-shrink-0 h-screen overflow-y-auto">
+
+    <div class="p-6">
+        <p class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-4">
+            Main Menu
+        </p>
+
+        <nav class="space-y-1">
+            <div class="mt-2 accordion-item">
+                <button class="w-full flex items-center justify-between  px-3 py-2.5 dark:bg-primary/10 rounded-lg transition-colors group accordion-btn @(currentController == "Sections" ? "bg-primary/5 text-primary" : "hover:bg-slate-50 text-slate-600")">
+                    <div class="flex items-center gap-3">
+                        <span class="material-icons-outlined">layers</span>
+                        <span class="font-bold">Sections</span>
+                    </div>
+                    <span class="material-icons-outlined transform text-sm transition-transform duration-200 accordion-icon">expand_more</span>
+                </button>
+
+                <div class="pl-11 pr-2 py-2 space-y-1 accordion-content" id="sections-accordion">
+                    <a class="block px-3 py-2 text-sm rounded-lg transition-colors @(currentAction == "Hero" ? "font-semibold text-primary bg-primary/10" : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-white/5")"
+                       href="/admin/hero">Hero Section</a>
+                    <a class="block px-3 py-2 text-sm rounded-lg transition-colors @(currentAction == "About" ? "font-semibold text-primary bg-primary/10" : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-white/5")"
+                       href="/admin/about">About Me</a>
+                    <a class="block px-3 py-2 text-sm rounded-lg transition-colors @(currentAction == "Projects" ? "font-semibold text-primary bg-primary/10" : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-white/5")"
+                       href="/admin/projects">Featured Projects</a>
+                    <a class="block px-3 py-2 text-sm rounded-lg transition-colors @(currentAction == "Contact" ? "font-semibold text-primary bg-primary/10" : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-white/5")"
+                       href="/admin/contact">Contact Info</a>
+                </div>
+            </div>
+            <a class="flex items-center gap-3 px-3 py-2.5 dark:text-slate-300  dark:hover:bg-white/5 rounded-lg transition-colors group @(currentController == "Project" ? "bg-primary/5 text-primary" : "hover:bg-slate-50 text-slate-600")"
+               href="/admin/project">
+                <span class="material-icons-outlined">folder_open</span>
+                <span class="font-medium">All Projects</span>
+            </a>
+            <a class="flex items-center gap-3 px-3 py-2.5 dark:text-slate-300 dark:hover:bg-white/5 rounded-lg transition-colors group @(currentController == "Skill" ? "bg-primary/5 text-primary" : "hover:bg-slate-50 text-slate-600")"
+               href="/admin/skill">
+                <span class="material-icons-outlined">code</span>
+                <span class="font-medium">Skills</span>
+            </a>
+            <a class="flex items-center gap-3 px-3 py-2.5 dark:text-slate-300 dark:hover:bg-white/5 rounded-lg transition-colors group @(currentController == "SocialMedia" ? "bg-primary/5 text-primary" : "hover:bg-slate-50 text-slate-600")"
+               href="/admin/socialmedia">
+                <span class="material-icons-outlined">public</span>
+                <span class="font-medium">Social Media</span>
+            </a>
+        </nav>
+    </div>
+</aside>
+
+@RenderBody()
+

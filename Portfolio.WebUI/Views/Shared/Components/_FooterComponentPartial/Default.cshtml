@@ -1,0 +1,32 @@
+﻿@model List<SocialGetDto> 
+
+<footer class="relative z-10 border-t border-slate-800 mb-4 bg-background-dark/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex justify-center mb-6 space-x-4">
+
+            @foreach (var social in Model)
+            {
+                <a class="w-14 h-14 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-primary
+                hover:text-white transition-all duration-300 transform hover:scale-110" href="@social.AccountUrl" target="_blank">
+                <!-- GitHub Icon SVG --> 
+                    <svg class="w-7 h-7 fill-current" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="@social.LogoUrl"> 
+                        </path> 
+                    </svg> 
+                </a>
+            }
+        </div> 
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+            <!-- Brand / Copyright --> 
+            <div class="text-center md:text-left"> 
+                <p class="text-white font-bold text-xl mb-1">Barış<span class="text-primary">.dev</span></p> 
+                <p class="text-sm text-slate-500"> No copyright © 2026. </p> 
+            </div> 
+            <div class="flex flex-col items-center md:items-end gap-4">
+                <p class="text-xs font-mono text-slate-500 uppercase tracking-widest"> Designed &amp; Created by Barış </p> 
+                
+            </div> 
+            
+        </div>
+    </div>
+</footer>

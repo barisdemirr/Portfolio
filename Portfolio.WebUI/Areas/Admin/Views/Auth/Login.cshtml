@@ -1,0 +1,111 @@
+﻿@model LoginDto
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Admin Login - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#7f13ec",
+                        "primary-hover": "#6b11c9",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#191022",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased min-h-screen flex items-center justify-center p-4">
+    <!-- Main Container -->
+    <main class="w-full max-w-md">
+        <!-- Logo / Branding Area (Optional but nice for context) -->
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 text-primary mb-4">
+                <span class="material-icons text-2xl">admin_panel_settings</span>
+            </div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Admin Panel</h1>
+            <p class="text-gray-500 dark:text-gray-400 mt-2">Manage your portfolio content</p>
+        </div>
+        <!-- Login Card -->
+        <div class="bg-white dark:bg-[#231630] rounded-xl shadow-xl border border-gray-100 dark:border-gray-800 overflow-hidden relative z-10">
+            <!-- Decorative subtle top border -->
+            <div class="h-1 w-full bg-gradient-to-r from-primary via-purple-400 to-primary"></div>
+            <div class="p-8 sm:p-10">
+                <form asp-area="admin" asp-controller="auth" asp-action="login" class="space-y-6" method="POST">
+                    @* error field *@
+                    <div asp-validation-summary="ModelOnly" class="p-3 text-sm text-red-600 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/30 rounded-lg"></div>
+                    <!-- Username Field -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2" for="username">
+                            Username
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                <span class="material-icons text-[20px]">person</span>
+                            </div>
+                            <input asp-for="Username" class="block w-full pl-10 pr-3 py-3 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-50 dark:bg-[#191022] transition-all duration-200 sm:text-sm" id="username" placeholder="Enter your username" type="text" />
+                        </div>
+                    </div>
+                    <!-- Password Field -->
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300" for="password">
+                                Password
+                            </label>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                <span class="material-icons text-[20px]">lock</span>
+                            </div>
+                            <input asp-for="Password" class="block w-full pl-10 pr-10 py-3 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-50 dark:bg-[#191022] transition-all duration-200 sm:text-sm" id="password" placeholder="••••••••" type="password" />
+                        </div>
+                    </div>
+                    <!-- Submit Button -->
+                    <div>
+                        <button class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-semibold rounded-lg text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary shadow-lg shadow-primary/30 transition-all duration-200 transform hover:-translate-y-0.5" type="submit">
+                            Sign In
+                            <span class="absolute right-4 inset-y-0 flex items-center pl-3">
+                                <span class="material-icons text-white/70 group-hover:text-white transition-colors text-lg">arrow_forward</span>
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Return to Site Link -->
+        <div class="mt-8 text-center">
+            <a class="inline-flex items-center text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-white transition-colors" asp-controller="Home" asp-action="Index">
+                <span class="material-icons text-sm mr-2">west</span>
+                Back to Portfolio
+            </a>
+        </div>
+        <!-- Decorative Background Elements (Abstract) -->
+        <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+            <!-- Top Right Blob -->
+            <div class="absolute -top-[10%] -right-[5%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl"></div>
+            <!-- Bottom Left Blob -->
+            <div class="absolute -bottom-[10%] -left-[5%] w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-3xl"></div>
+        </div>
+    </main>
+</body>
+</html>

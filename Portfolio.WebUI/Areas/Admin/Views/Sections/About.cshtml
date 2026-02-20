@@ -1,0 +1,147 @@
+﻿@model AboutGetDto
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_PanelLayout.cshtml";
+}
+
+<main class="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark p-6 lg:p-10">
+    <div class="max-w-5xl mx-auto">
+        <!-- Breadcrumb & Header -->
+        <div class="mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-slate-900 dark:text-white">About Section Management</h1>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">
+                        Refine your personal narrative, professional background, and the story behind your creative journey.
+                    </p>
+                </div>
+                <div class="flex gap-3">
+                    <a asp-controller="home" asp-action="Index" asp-fragment="about" class="inline-flex items-center gap-2 px-4 py-2 border border-slate-300 dark:border-white/20 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/5 font-medium transition-colors text-sm">
+                        <span class="material-icons-outlined text-lg">visibility</span>
+                        Preview on Site
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Content Card -->
+        <div class="bg-white dark:bg-[#231631] rounded-xl shadow-sm border border-slate-200 dark:border-white/5 overflow-hidden">
+
+            <div class="px-6 py-4 border-b border-slate-100 dark:border-white/5 flex justify-between items-center bg-slate-50/50 dark:bg-white/[0.02]">
+                <span class="text-xs text-slate-400">Last updated: @Model.UpdatedAt</span>
+            </div>
+
+            <form class="p-6 space-y-6" asp-area="Admin" asp-controller="Sections" asp-action="About" method="post">
+
+                <div class="space-y-6">
+                    <div>
+                        <label for="sur-title"
+                               class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            Sur-Title
+                        </label>
+                        <input asp-for="SurTitle" type="text" id="sur-title"
+                               class="w-full px-4 py-3 bg-white dark:bg-[#1a1025] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200" />
+                    </div>
+
+                    <div>
+                        <label for="title"
+                               class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            Title
+                        </label>
+                        <input asp-for="Title" type="text" id="title"
+                               class="w-full px-4 py-3 bg-white dark:bg-[#1a1025] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200" />
+                    </div>
+
+                    <div>
+                        <label for="description"
+                               class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            Description
+                        </label>
+                        <input asp-for="Description" type="text" id="description"
+                               class="w-full px-4 py-3 bg-white dark:bg-[#1a1025] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200" />
+                    </div>
+
+                    <div>
+                        <label for="subdescription"
+                               class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            Subdescription
+                        </label>
+                        <input asp-for="SubDescription" type="text" id="subdescription"
+                               class="w-full px-4 py-3 bg-white dark:bg-[#1a1025] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200" />
+                    </div>
+
+                    <div>
+                        <label for="cv-url"
+                               class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            CV-URL
+                        </label>
+                        <input asp-for="CvUrl" type="text" id="cv-url"
+                               class="w-full px-4 py-3 bg-white dark:bg-[#1a1025] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200" />
+                    </div>
+
+                    <div>
+                        <label for="department"
+                               class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            Department
+                        </label>
+                        <input asp-for="EducationDepartment" type="text" id="department"
+                               class="w-full px-4 py-3 bg-white dark:bg-[#1a1025] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200" />
+                    </div>
+
+                    <div>
+                        <label for="college"
+                               class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            College
+                        </label>
+                        <input asp-for="EducationCollege" type="text" id="college"
+                               class="w-full px-4 py-3 bg-white dark:bg-[#1a1025] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200" />
+                    </div>
+
+                    <div>
+                        <label for="education-date"
+                               class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            Education Date
+                        </label>
+                        <input asp-for="EducationDate" type="text" id="education-date"
+                               class="w-full px-4 py-3 bg-white dark:bg-[#1a1025] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200" />
+                    </div>
+
+                    <div>
+                        <label for="education-description"
+                               class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            Education Description
+                        </label>
+                        <input asp-for="EducationDescription" type="text" id="education-description"
+                               class="w-full px-4 py-3 bg-white dark:bg-[#1a1025] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200" />
+                    </div>
+
+                    <div>
+                        <label for="tech-title"
+                               class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            Tech Title
+                        </label>
+                        <input asp-for="TechTitle" type="text" id="tech-title"
+                               class="w-full px-4 py-3 bg-white dark:bg-[#1a1025] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200" />
+                    </div>
+
+                    <div>
+                        <label for="tech-description"
+                               class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                            Tech Description
+                        </label>
+                        <input asp-for="TechDescription" type="text" id="tech-description"
+                               class="w-full px-4 py-3 bg-white dark:bg-[#1a1025] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200" />
+                    </div>
+                </div>
+
+                <div class="pt-4 flex justify-end">
+                    <button type="submit"
+                            class="px-6 py-2.5 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 focus:ring-4 focus:ring-primary/20 transition-colors">
+                        Save Changes
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+</main>
+

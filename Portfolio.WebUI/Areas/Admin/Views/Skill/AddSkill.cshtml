@@ -1,0 +1,84 @@
+﻿@model SkillAddAdminDto
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_PanelLayout.cshtml";
+}
+
+
+<main class="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark p-6 lg:p-10">
+    <div class="max-w-5xl mx-auto">
+        <!-- Breadcrumb & Header -->
+        <div class="mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-slate-900 dark:text-white">Add New Skill</h1>
+                </div>
+            </div>
+        </div>
+        <!-- Content Card -->
+        <div class="bg-white dark:bg-[#231631] rounded-xl shadow-sm border border-slate-200 dark:border-white/5 overflow-hidden">
+
+
+            <form class="p-6 space-y-6" asp-area="Admin" asp-controller="Skill" asp-action="AddSkill" method="post">
+
+                <div>
+                    <label for="name"
+                           class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                         Name
+                    </label>
+                    <input asp-for="Name" type="text" id="name"
+                           class="w-full px-4 py-3 bg-white dark:bg-[#1a1025] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200" />
+                </div>
+
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <label for="progress" class="block text-sm font-medium text-slate-700 dark:text-slate-300">
+                            Progress Value
+                        </label>
+                    </div>
+
+                    <div>
+                        <input asp-for="ProgressValue" type="range" min="0" max="100" step="1" id="progress"
+                               class="w-[60%] h-2 bg-slate-200 dark:bg-white/10 rounded-lg appearance-none cursor-pointer accent-primary focus:outline-none transition-all duration-200"
+                               oninput="document.getElementById('progress-value').innerText = this.value + '%'" />
+
+                        <span id="progress-value" class="px-2 ml-5 py-1 text-xs font-bold bg-primary/10 text-primary rounded-lg border border-primary/20">
+                            @(Model?.ProgressValue ?? 0)%
+                        </span>
+                    </div>
+
+                    <div class="flex justify-between mt-2 px-1 w-[60%]">
+                        <span class="text-[10px] text-slate-400">1%</span>
+                        <span class="text-[10px] text-slate-400">100%</span>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="description"
+                           class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                        Description
+                    </label>
+                    <input asp-for="Description" type="text" id="description"
+                           class="w-full px-4 py-3 bg-white dark:bg-[#1a1025] border border-slate-200 dark:border-white/10 rounded-xl text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200" />
+                </div>
+
+                <div class="flex items-center gap-3 mb-6">
+                    <input asp-for="ShowOnHero" type="checkbox" id="showonhero"
+                           class="w-5 h-5 bg-white dark:bg-[#1a1025] border border-slate-200 dark:border-white/10 rounded focus:ring-2 focus:ring-primary/20 text-primary transition-all duration-200" />
+                    <label for="showonhero"
+                           class="text-sm font-medium text-slate-700 dark:text-slate-300">
+                        Show on Hero?
+                    </label>
+                </div>
+
+                <div class="pt-4 flex justify-end">
+                    <button type="submit"
+                            class="px-6 py-2.5 bg-primary text-white font-medium rounded-lg hover:bg-primary/90 focus:ring-4 focus:ring-primary/20 transition-colors">
+                        Save Changes
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</main>

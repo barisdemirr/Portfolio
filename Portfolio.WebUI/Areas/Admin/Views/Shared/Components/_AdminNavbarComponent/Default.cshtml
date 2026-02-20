@@ -1,0 +1,41 @@
+﻿@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+}
+
+<nav class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-primary/10 dark:border-primary/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+            <div class="flex items-center gap-3">
+                <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-primary text-white">
+                    <span class="material-icons-round text-2xl">dashboard</span>
+                </div>
+                <span class="font-bold text-xl tracking-tight text-slate-900 dark:text-white">
+                    Portfolio<span class="text-primary">Admin</span>
+                </span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a class="inline-flex items-center px-1 pt-1 text-sm @(currentController == "Dashboard" ? "font-bold text-primary border-b-2 border-primary" : "font-medium text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors")"
+                   href="/admin">
+                    Dashboard
+                </a>
+                <a class="inline-flex items-center px-1 pt-1 text-sm @((currentController == "Sections" || currentController == "Project" || currentController == "Skill" || currentController == "SocialMedia") ? "font-bold text-primary border-b-2 border-primary" : "font-medium text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors")"
+                   href="/admin/hero">
+                    Panel
+                </a>
+                <a class="inline-flex items-center px-1 pt-1 text-sm @(currentController == "Admins" ? "font-bold text-primary border-b-2 border-primary" : "font-medium text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors")"
+                   href="/admin/admins">
+                    Admins
+                </a>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="mt-auto p-6 border-t border-slate-200 dark:border-white/10">
+                    <a class="flex items-center gap-3 px-3 py-2.5 text-slate-500 dark:text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 rounded-lg transition-colors"
+                       asp-area="admin" asp-controller="auth" asp-action="logout">
+                        <span class="material-icons-outlined">logout</span>
+                        <span class="font-medium">Logout</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,360 @@
+﻿<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>@ViewData["Title"]</title>
+    <meta name="title" content="Barış | Backend-Focused Full-Stack Developer & Software Engineer">
+    <meta name="description"
+          content="Barış - Backend-Focused Full-Stack Developer and Computer Engineering student at Karadeniz Technical University. Specialized in building robust architectures with .NET, Next.js, and PostgreSQL.">
+    <meta name="keywords"
+          content="Barış, Full-Stack Developer, Backend Engineer, .NET Core, Next.js, PostgreSQL, KTU, Computer Engineering, N-Layer Architecture, Clean Architecture, Adıyaman, Trabzon, Web Development">
+    <meta name="author" content="Barış">
+    <meta name="theme-color" content="#0f172a">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://baris.dev/">
+    <meta property="og:title" content="Barış | Backend-Focused Full-Stack Developer">
+    <meta property="og:description"
+          content="Backend odaklı modern yazılım çözümleri. .NET ve Next.js ile geliştirilen yüksek performanslı projelerimi keşfedin.">
+    <meta property="og:image" content="https://baris.dev/og-image.jpg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://baris.dev/">
+    <meta property="twitter:title" content="Barış | Backend-Focused Full-Stack Developer">
+    <meta property="twitter:description"
+          content="Backend mimarisi ve modern web teknolojileri üzerine uzmanlaşmış bir mühendislik öğrencisinin portfolyosu.">
+    <meta property="twitter:image" content="https://baris.dev/og-image.jpg">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="icon" type="image/png" href="~/image/logo.png" sizes="32x32">
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap"
+          rel="stylesheet" />
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined&family=Material+Icons"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+          rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Tailwind Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1132d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101322",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                    backgroundImage: {
+                        'hero-pattern': "url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&auto=format&fit=crop&w=2342&q=80')",
+                    }
+                },
+            },
+        }
+    </script>
+
+    <link rel="stylesheet" href="~/css/styles.css" />
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased overflow-x-hidden font-display h-screen w-full relative">
+    <!-- Background Layer with Overlay -->
+    <div class="absolute inset-0 z-0 w-full h-full">
+        <!-- Image Background -->
+        <div class="absolute inset-0 bg-hero-pattern bg-cover bg-center bg-no-repeat opacity-40 mix-blend-overlay"
+             data-alt="Abstract midnight blue starry sky texture"></div>
+        <!-- Gradient Overlay for Deep Midnight Blue Effect -->
+        <div class="absolute inset-0 bg-gradient-to-b from-background-dark/90 via-[#0a0e1c]/95 to-background-dark">
+        </div>
+        <!-- Subtle Radial Gradient for Center Focus -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent opacity-60">
+        </div>
+    </div>
+    <!-- Main Content Container -->
+    <div class="relative z-10 flex flex-col justify-between items-center h-full w-full px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Top Spacer (to balance vertical centering if nav is bottom, but here we center nav at top or center-bottom) -->
+        <div class="flex-none h-16 hidden md:block"></div>
+
+
+        <!-- NAVBAR -->
+        @await Component.InvokeAsync("_NavbarComponentPartial")
+
+        <main>
+
+            @RenderBody()
+            
+        </main>
+
+
+        <!-- FOOTER -->
+        @await Component.InvokeAsync("_FooterComponentPartial")
+        
+
+
+    </div>
+
+    <!-- Navbar Links Activation -->
+    <script>
+        const activeClassStr = "bg-primary text-white hover:bg-primary/90 hover:shadow-lg transition-all duration-300 ml-1";
+        const inactiveClassStr = "text-gray-400 hover:text-white transition-colors";
+
+        const getClasses = (str) => str.split(' ').filter(c => c.trim().length > 0);
+
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll("nav a");
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -70% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute("id");
+                    const activeLink = document.querySelector(`nav a[href="#${id}"]`);
+
+                    if (activeLink) {
+                        navLinks.forEach((link) => {
+                            link.classList.remove(...getClasses(activeClassStr));
+                            link.classList.add(...getClasses(inactiveClassStr));
+                        });
+
+                        activeLink.classList.remove(...getClasses(inactiveClassStr));
+                        activeLink.classList.add(...getClasses(activeClassStr));
+                    }
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach((section) => observer.observe(section));
+    </script>
+
+    <!-- Tech Stack Pagination Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cardsPerPage = 4;
+            let currentPage = 1;
+            const grid = document.getElementById('skill-grid');
+            const cards = Array.from(grid.getElementsByClassName('skill-card'));
+            const pageNumbersContainer = document.getElementById('page-numbers');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            // shouldScroll parametresini ekledik
+            function updateDisplay(shouldScroll = true) {
+                const start = (currentPage - 1) * cardsPerPage;
+                const end = start + cardsPerPage;
+
+                cards.forEach((card, index) => {
+                    if (index >= start && index < end) {
+                        card.classList.remove('hidden');
+                        card.style.opacity = '0';
+                        setTimeout(() => {
+                            card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                            card.style.opacity = '1';
+                        }, 50);
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                renderPageNumbers();
+                prevBtn.disabled = currentPage === 1;
+                nextBtn.disabled = currentPage === Math.ceil(cards.length / cardsPerPage);
+
+                // Sadece bir butona basıldığında ve mobildeyse yukarı kaydır
+                if (shouldScroll && window.innerWidth < 768) {
+                    const y = grid.getBoundingClientRect().top + window.pageYOffset - 140;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+            }
+
+            function renderPageNumbers() {
+                const totalPages = Math.ceil(cards.length / cardsPerPage);
+                pageNumbersContainer.innerHTML = '';
+
+                for (let i = 1; i <= totalPages; i++) {
+                    const btn = document.createElement('button');
+                    btn.innerText = i;
+                    btn.className = `w-10 h-10 rounded-lg border transition-all duration-300 font-medium ${i === currentPage
+                        ? 'bg-primary border-primary text-white shadow-[0_0_15px_rgba(17,50,212,0.4)]'
+                        : 'bg-white/5 border-white/10 text-gray-400 hover:text-white hover:border-white/30'
+                        }`;
+                    btn.onclick = () => {
+                        currentPage = i;
+                        updateDisplay(true); // Tıklandığında kaysın
+                    };
+                    pageNumbersContainer.appendChild(btn);
+                }
+            }
+
+            prevBtn.onclick = () => { if (currentPage > 1) { currentPage--; updateDisplay(true); } };
+            nextBtn.onclick = () => { if (currentPage < Math.ceil(cards.length / cardsPerPage)) { currentPage++; updateDisplay(true); } };
+
+            // İlk yüklemede false gönderiyoruz ki sayfa açılır açılmaz buraya zıplamasın
+            updateDisplay(false);
+        });
+    </script>
+
+    <!-- Projects Pagination Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const projPerPage = 3;
+            let projCurrentPage = 1;
+
+            const projGrid = document.getElementById('project-grid');
+            const projItems = Array.from(projGrid.getElementsByClassName('project-item'));
+            const projPageNumbers = document.getElementById('project-page-numbers');
+            const projPrevBtn = document.getElementById('project-prev-btn');
+            const projNextBtn = document.getElementById('project-next-btn');
+
+            // shouldScroll parametresi ekledik, varsayılan olarak true
+            function updateProjectDisplay(shouldScroll = true) {
+                const start = (projCurrentPage - 1) * projPerPage;
+                const end = start + projPerPage;
+
+                projItems.forEach((item, index) => {
+                    if (index >= start && index < end) {
+                        item.classList.remove('hidden');
+                        item.style.opacity = '0';
+                        setTimeout(() => {
+                            item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                            item.style.opacity = '1';
+                        }, 50);
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+
+                renderProjectNumbers();
+                projPrevBtn.disabled = projCurrentPage === 1;
+                projNextBtn.disabled = projCurrentPage === Math.ceil(projItems.length / projPerPage);
+
+                // Sadece bir butona tıklandığında ve mobildeyken yukarı kaydır
+                if (shouldScroll && window.innerWidth < 768) {
+                    const yOffset = -100;
+                    const y = projGrid.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+            }
+
+            function renderProjectNumbers() {
+                const totalPages = Math.ceil(projItems.length / projPerPage);
+                projPageNumbers.innerHTML = '';
+
+                for (let i = 1; i <= totalPages; i++) {
+                    const btn = document.createElement('button');
+                    btn.innerText = i;
+                    btn.className = `w-10 h-10 rounded-lg border transition-all duration-300 font-medium ${i === projCurrentPage
+                        ? 'bg-primary border-primary text-white shadow-[0_0_15px_rgba(17,50,212,0.4)]'
+                        : 'bg-white/5 border-white/10 text-gray-400 hover:text-white hover:border-white/30'
+                        }`;
+                    btn.onclick = () => {
+                        projCurrentPage = i;
+                        updateProjectDisplay(true); // Tıklandığı için kaysın
+                    };
+                    projPageNumbers.appendChild(btn);
+                }
+            }
+
+            projPrevBtn.onclick = () => {
+                if (projCurrentPage > 1) {
+                    projCurrentPage--;
+                    updateProjectDisplay(true); // Tıklandığı için kaysın
+                }
+            };
+
+            projNextBtn.onclick = () => {
+                if (projCurrentPage < Math.ceil(projItems.length / projPerPage)) {
+                    projCurrentPage++;
+                    updateProjectDisplay(true); // Tıklandığı için kaysın
+                }
+            };
+
+            // İLK YÜKLEME: shouldScroll değerini false gönderiyoruz ki sayfa zıplamasın
+            updateProjectDisplay(false);
+        });
+    </script>
+
+    <!-- Responsive Navbar -->
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const navLink = document.querySelectorAll('.nav-link');
+
+        menuToggle.addEventListener('click', () => {
+            const isHidden = navMenu.classList.toggle('hidden');
+            menuIcon.textContent = isHidden ? 'menu' : 'close';
+
+            // Menü açıldığında flex görünümünü sağla
+            if (!isHidden) {
+                navMenu.classList.add('flex');
+            }
+        });
+
+        // Mobilde linke tıklayınca menüyü kapat (Single page için önemli)
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 768) {
+                    navMenu.classList.add('hidden');
+                    menuIcon.textContent = 'menu';
+                }
+            });
+        });
+    </script>
+
+    <!-- Hiding Navbar -->
+    <script>
+        let lastScrollTop = 0;
+        let downScrollAccumulator = 0; // Aşağı kaydırma miktarını biriktirir
+        const navbar = document.querySelector('nav'); // Navbar elementin
+        const threshold = 130; // Başlangıçtaki dokunulmazlık sınırı
+        const hideDelta = 50;  // 130px'den sonraki gizlenme eşiği
+
+        window.addEventListener('scroll', () => {
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            // 1. Durum: Sayfanın en başındaysak (130px altı)
+            if (currentScroll < threshold) {
+                navbar.style.transform = 'translateX(-50%) translateY(0)';
+                downScrollAccumulator = 0; // Birikmiş kaydırmayı sıfırla
+            }
+            // 2. Durum: Aşağı kaydırıyoruz
+            else if (currentScroll > lastScrollTop) {
+                downScrollAccumulator += (currentScroll - lastScrollTop);
+
+                // Eğer 130px'i geçtiysek VE 50px daha aşağı kaydırdıysak sakla
+                if (downScrollAccumulator > hideDelta) {
+                    navbar.style.transform = 'translateX(-50%) translateY(-150%)';
+                }
+            }
+            // 3. Durum: Yukarı kaydırıyoruz
+            else {
+                navbar.style.transform = 'translateX(-50%) translateY(0)';
+                downScrollAccumulator = 0; // Yukarı çıkarken birikmiş aşağı kaydırmayı sıfırla
+            }
+
+            // Negatif scroll (iOS sıçraması) olmasın diye 0'a sabitle
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        }, { passive: true });
+    </script>
+</body>
+
+</html>

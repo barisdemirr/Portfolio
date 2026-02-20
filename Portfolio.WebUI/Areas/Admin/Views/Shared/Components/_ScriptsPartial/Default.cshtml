@@ -1,0 +1,33 @@
+﻿@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+}
+
+<script>
+    console.log('@currentController')
+    document.addEventListener('DOMContentLoaded', () => {
+        const accordions = document.querySelectorAll('.accordion-item');
+
+
+        const sectionsContent = document.querySelector('#sections-accordion');
+        const sectionsIcon = document.querySelector('#sections-accordion .accordion-icon');
+        
+        console.log(sectionsContent)
+        // Eğer Sections controller'ında değilsek, hidden sınıfını ekle
+        if ('@currentController' != 'Sections') {
+            sectionsContent.classList.add('hidden');
+            sectionsIcon?.classList.remove('rotate-180');
+        }
+
+        accordions.forEach(item => {
+            const btn = item.querySelector('.accordion-btn');
+            const content = item.querySelector('.accordion-content');
+            const icon = item.querySelector('.accordion-icon');
+
+            btn.addEventListener('click', () => {
+                content.classList.toggle('hidden');
+
+                icon.classList.toggle('rotate-180');
+            });
+        });
+    });
+</script>
